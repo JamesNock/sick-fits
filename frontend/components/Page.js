@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import Header from './Header';
 
 const GlobalStyles = createGlobalStyle`
-  #font-face {
+  @font-face {
     font-family: 'radnika_next';
     src: url('/static/radnikanext-medium-webfont.woff2') format('woff2');
     font-weight: normal;
@@ -18,6 +18,7 @@ const GlobalStyles = createGlobalStyle`
     --maxWidth: 1000px;
     --bs: 0 12px 24px 0 rgba(0,0,0,0.09);
     box-sizing: border-box;
+    font-size: 62.5%;
   }
   *, *:before, *:after {
     box-sizing: inherit;
@@ -52,7 +53,7 @@ export default function Page({ children }) {
     <div>
       <GlobalStyles />
       <Header />
-      <innerStyles>{children}</innerStyles>
+      <InnerStyles>{children}</InnerStyles>
     </div>
   );
 }
