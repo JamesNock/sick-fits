@@ -29,7 +29,7 @@ function CartStateProvider({ children }) {
   );
 }
 
-/* make a custom hook for access the cart local state */
+/* make a custom hook for accessing the cart local state */
 function useCart() {
   /* we use a consumer here to access the local state */
   const all = useContext(LocalStateContext);
