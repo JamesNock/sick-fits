@@ -5,6 +5,7 @@ import PriceTag from './styles/PriceTag';
 import formatMoney from '../lib/formatMoney';
 import DeleteProduct from './DeleteProduct';
 import AddToCart from './AddToCart';
+import LoggedInOnly from './LoggedInOnly';
 
 export default function Product({ product }) {
   return (
@@ -19,11 +20,15 @@ export default function Product({ product }) {
       <PriceTag>{formatMoney(product.price)}</PriceTag>
       <p>{product.description}</p>
       <div className="buttonList">
-        <Link href={{ pathname: '/update', query: { id: product.id } }}>
-          Edit
-        </Link>
+        <LoggedInOnly>
+          <Link href={{ pathname: '/update', query: { id: product.id } }}>
+            Edit
+          </Link>
+        </LoggedInOnly>
         <AddToCart id={product.id}>Add to Cart</AddToCart>
-        <DeleteProduct id={product.id}>Delete</DeleteProduct>
+        <LoggedInOnly>
+          <DeleteProduct id={product.id}>Delete</DeleteProduct>
+        </LoggedInOnly>
       </div>
     </ItemStyles>
   );
