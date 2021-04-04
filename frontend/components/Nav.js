@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useCart } from '../lib/CartState';
 import CartCount from './CartCount';
-import SignOut from './Signout';
+import SignOut from './SignOut';
 import NavStyles from './styles/NavStyles';
 import { useUser } from './User';
 
