@@ -6,14 +6,17 @@ import formatMoney from '../lib/formatMoney';
 import DeleteProduct from './DeleteProduct';
 import AddToCart from './AddToCart';
 import LoggedInOnly from './LoggedInOnly';
+import NotLoggedInOnly from './NotLoggedInOnly';
 
 export default function Product({ product }) {
   return (
     <ItemStyles>
-      <img
-        src={product?.photo?.image?.publicUrlTransformed}
-        alt={product.name}
-      />
+      <Link href={`/product/${product.id}`}>
+        <img
+          src={product?.photo?.image?.publicUrlTransformed}
+          alt={product.name}
+        />
+      </Link>
       <Title>
         <Link href={`/product/${product.id}`}>{product?.name}</Link>
       </Title>
@@ -24,11 +27,12 @@ export default function Product({ product }) {
           <Link href={{ pathname: '/update', query: { id: product.id } }}>
             Edit
           </Link>
-        </LoggedInOnly>
-        <AddToCart id={product.id}>Add to Cart</AddToCart>
-        <LoggedInOnly>
+          <AddToCart id={product.id}>Add to Cart</AddToCart>
           <DeleteProduct id={product.id}>Delete</DeleteProduct>
         </LoggedInOnly>
+        <NotLoggedInOnly>
+          <Link href="/signin">Sign in to start shopping</Link>
+        </NotLoggedInOnly>
       </div>
     </ItemStyles>
   );

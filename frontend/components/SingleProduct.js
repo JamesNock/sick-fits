@@ -1,8 +1,12 @@
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import Head from 'next/head';
+import Link from 'next/link';
 import styled from 'styled-components';
+import AddToCart from './AddToCart';
 import ErrorMessage from './ErrorMessage';
+import LoggedInOnly from './LoggedInOnly';
+import NotLoggedInOnly from './NotLoggedInOnly';
 
 const ProductStyles = styled.div`
   display: grid;
@@ -35,6 +39,19 @@ export const SINGLE_PRODUCT_QUERY = gql`
   }
 `;
 
+const AddToCartButtonStyles = styled.div`
+  > button,
+  a {
+    background: var(--red);
+    color: var(--offWhite);
+    font-size: 1.5rem;
+    padding: 1rem;
+    border: 0;
+    z-index: 2;
+    margin-top: 2rem;
+  }
+`;
+
 export default function SingleProduct({ id }) {
   const { data, loading, error } = useQuery(SINGLE_PRODUCT_QUERY, {
     variables: {
@@ -57,8 +74,15 @@ export default function SingleProduct({ id }) {
       <div className="details">
         <h2>{Product.name}</h2>
         <p>{Product.description}</p>
+        <AddToCartButtonStyles>
+          <LoggedInOnly>
+            <AddToCart id={Product.id}>Add to Cart</AddToCart>
+          </LoggedInOnly>
+          <NotLoggedInOnly>
+            <Link href="/signin">Sign in to to start shopping</Link>
+          </NotLoggedInOnly>
+        </AddToCartButtonStyles>
       </div>
-      .className
     </ProductStyles>
   );
 }

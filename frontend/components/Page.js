@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
+import Footer from './Footer';
 import Header from './Header';
 
 const GlobalStyles = createGlobalStyle`
@@ -19,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
     --bs: 0 12px 24px 0 rgba(0,0,0,0.09);
     box-sizing: border-box;
     font-size: 62.5%;
+    height: 100%;
   }
   *, *:before, *:after {
     box-sizing: inherit;
@@ -29,6 +31,9 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     font-size: 1.5rem;
     line-height: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
   a {
     text-decoration: none;
@@ -42,19 +47,31 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+const PageStyles = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+`;
+
 const InnerStyles = styled.div`
+  width: 100%;
   max-width: var(--maxWidth);
   margin: 0 auto;
   padding: 2rem;
+  flex-grow: 1;
 `;
 
 export default function Page({ children }) {
   return (
-    <div>
-      <GlobalStyles />
-      <Header />
-      <InnerStyles>{children}</InnerStyles>
-    </div>
+    <>
+      <PageStyles>
+        <GlobalStyles />
+        <Header />
+        <InnerStyles>{children}</InnerStyles>
+        <Footer />
+      </PageStyles>
+    </>
   );
 }
 

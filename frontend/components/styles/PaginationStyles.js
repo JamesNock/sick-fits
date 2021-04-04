@@ -7,7 +7,7 @@ const PaginationStyles = styled.div`
   align-items: stretch;
   justify-content: center;
   align-content: center;
-  margin: 2rem 0;
+  margin: 3rem auto;
   border: 1px solid var(--lightGrey);
   border-radius: 10px;
   & > * {
@@ -22,6 +22,10 @@ const PaginationStyles = styled.div`
     color: grey;
     pointer-events: none;
   }
+`;
+
+export const PaginationContainerStyles = styled.div`
+  text-align: center;
 `;
 
 export default PaginationStyles;

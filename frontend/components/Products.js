@@ -24,7 +24,7 @@ export const ALL_PRODUCTS_QUERY = gql`
 const ProductsList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-gap: 60px;
 `;
 
 export default function Products({ page }) {
@@ -34,12 +34,10 @@ export default function Products({ page }) {
   if (loading) return <p>Loading</p>;
   if (error) return <p>Error: {error.message}</p>;
   return (
-    <div>
-      <ProductsList>
-        {data.allProducts.map((product) => (
-          <Product key={product.id} product={product} />
-        ))}
-      </ProductsList>
-    </div>
+    <ProductsList>
+      {data.allProducts.map((product) => (
+        <Product key={product.id} product={product} />
+      ))}
+    </ProductsList>
   );
 }

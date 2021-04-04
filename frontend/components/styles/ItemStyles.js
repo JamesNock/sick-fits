@@ -11,6 +11,9 @@ const ItemStyles = styled.div`
     width: 100%;
     height: 400px;
     object-fit: cover;
+    &:hover {
+      cursor: pointer;
+    }
   }
   p {
     line-height: 2;
@@ -26,6 +29,7 @@ const ItemStyles = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     grid-gap: 1px;
     background: var(--lightGrey);
+    text-align: center;
     & > * {
       background: white;
       border: 0;
